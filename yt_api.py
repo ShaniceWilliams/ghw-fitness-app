@@ -44,14 +44,10 @@ def parse_yt_data(youtube, video):
         return video_info
 
 
-def main():
+def get_video_info():
     scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
     secrets = dotenv_values(".env")
     yt = connect_yt(secrets)
     video_url = "https://youtu.be/fPJVkF_9jmI"
     video = get_video_id(video_url)
     parse_yt_data(yt, video)
-
-
-if __name__ == "__main__":
-    main()
