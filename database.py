@@ -41,3 +41,17 @@ def update_workout_today(workout_data, insert=False):
     if insert:
         return db.insert(SCHEMA, TABLE_TODAY, [workout_data])
     return db.update(SCHEMA, TABLE_TODAY, [workout_data])
+
+
+import yt_api
+
+scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
+secrets = dotenv_values(".env")
+yt = yt_api.connect_yt(secrets)
+video_url = "https://youtu.be/fPJVkF_9jmI"
+video = yt_api.get_video_id(video_url)
+infos = yt_api.parse_yt_data(yt, video)
+print(infos)
+insert_workout(infos)
+workouts = all_workouts()
+print(workouts)
