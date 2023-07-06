@@ -33,7 +33,7 @@ def send_email_to_db_emails():
         send_email(recipient, video_title, url)
 
 
-# Add the ability to send a email out everyday
+# Add the ability to send an email out everyday
 
 
 
