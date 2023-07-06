@@ -42,7 +42,6 @@ def update_workout_today(workout_data, insert=False):
         return db.insert(SCHEMA, TABLE_TODAY, [workout_data])
     return db.update(SCHEMA, TABLE_TODAY, [workout_data])
 
-
 # import yt_api
 #
 # scopes = ["https://www.googleapis.com/auth/youtube.readonly"]

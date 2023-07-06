@@ -14,18 +14,16 @@ def connect_yt(env_secrets):
 
 
 def get_video_id(url):
-    id = url.rsplit("/")
-    return id
+    video_id = url.rsplit("/",1)
+    return video_id[1]
 
 
-def parse_yt_data(youtube, video):
+def parse_yt_data(youtube, video_id):
     request = youtube.videos().list(
         part="snippet,contentDetails,statistics",
-        id=video
+        id=video_id
     )
     response = request.execute()
-
-    all_video_info = {}
 
     for video in response['items']:
         stats_to_keep = {'snippet': ['channelTitle', 'title', 'description', 'tags', 'publishedAt'],
@@ -50,4 +48,5 @@ def get_video_info(url):
     yt = connect_yt(secrets)
     video_url = url
     video = get_video_id(video_url)
-    parse_yt_data(yt, video)
+    data = parse_yt_data(yt, video)
+    return data

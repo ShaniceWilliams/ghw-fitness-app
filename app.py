@@ -46,6 +46,52 @@ if selection == "All workouts":
 elif selection == "Add workout":
     st.markdown(f"## Add workouts")
 
+    url = st.text_input('Enter the video url')
+    if url:
+        workout_data = get_video_info(url)
+        if workout_data is None:
+            st.text("Could not find video")
+        else:
+            st.text(workout_data['title'])
+            st.text(workout_data['channelTitle'])
+            st.video(url)
+            if st.button("Add workout"):
+                add = dbs.insert_workout(workout_data)
+                st.text("Added workout!")
+                st.cache_resource.clear()
+
 
 else:
     st.markdown(f"## Today's workouts")
+
+    workouts = get_workouts()
+    if not workouts:
+        st.text("No workouts in Database")
+    else:
+        wo = dbs.get_todays_workout()
+
+        if not wo:
+            workouts = get_workouts()
+            n = len(workouts)
+            index = random.randint(0, n-1)
+            wo = workouts[index]
+            dbs.update_workout_today(wo, insert=True)
+        else:
+            wo = wo[0]
+
+        if st.button("Choose another workout"):
+            workouts = get_workouts()
+            n = len(workouts)
+            if n > 1:
+                index = random.randint(0, n-1)
+                wo_new = workouts[index]
+                while wo_new["video_id"] == wo["video_id"]:
+                    index = random.randint(0, n - 1)
+                    wo_new = workouts[index]
+                wo = wo_new
+                dbs.update_workout_today(wo)
+
+        url = "https://youtu.be/" + wo["video_id"]
+        st.text(wo['title'])
+        st.text(wo['channelTitle'])
+        st.video(url)
