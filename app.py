@@ -29,6 +29,7 @@ if email:
     email_dict = {"email_id": email, "date_added": str(date.today())}
     dbs.add_email(email_dict)
     st.text("Email added to mailing list!")
+    st.cache_resource.clear()
 
 menu_options = ("Today's workout", "All workouts", "Add workout")
 selection = st.sidebar.selectbox("Menu", menu_options)
