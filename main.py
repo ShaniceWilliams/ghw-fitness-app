@@ -1,9 +1,27 @@
-from datetime import date
+from datetime import date, time, timedelta
 from send_emails import send_email
 import database as dbs
 import random
-import time
+import time as tm
 import datetime as dt
+import schedule
+import logging
+import logging.handlers
+import os
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger_file_handler = logging.handlers.RotatingFileHandler(
+    "status.log",
+    maxBytes=1024 * 1024,
+    backupCount=1,
+    encoding="utf8",
+)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logger_file_handler.setFormatter(formatter)
+logger.addHandler(logger_file_handler)
+
 from dotenv import dotenv_values
 
 secrets = dotenv_values()
@@ -27,18 +45,20 @@ def retrieve_daily_wo_info():
 # Retrieve emails from database and sends email to each
 def send_email_to_db_emails():
     emails = dbs.all_emails()
+    emails_sent = 0
     for email in emails:
         recipient = email["email_id"]
         url, video_title = retrieve_daily_wo_info()
         send_email(recipient, video_title, url)
+        emails_sent += 1
+    return emails_sent
 
-
-# Add the ability to send an email out everyday
-
+# Add the ability to send an email out everyday - This is being managed by Github actions
 
 
 def main():
-    send_email_to_db_emails()
+    result = send_email_to_db_emails()
+    logger.info(f'Number of emails sent: {result}')
 
 
 if __name__ == "__main__":
