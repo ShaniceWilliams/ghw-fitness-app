@@ -2,8 +2,6 @@ from send_emails import send_email
 import database as dbs
 import random
 import logging.handlers
-from dotenv import dotenv_values
-
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -16,8 +14,6 @@ logger_file_handler = logging.handlers.RotatingFileHandler(
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger_file_handler.setFormatter(formatter)
 logger.addHandler(logger_file_handler)
-
-secrets = dotenv_values()
 
 
 def get_workouts():

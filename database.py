@@ -1,13 +1,14 @@
 import harperdb
 from dotenv import dotenv_values
+import streamlit as st
 
 secrets = dotenv_values(".env")
 # Dotenv_values must be used for Harper db as there is a .env file that the harper package uses so loadenv does not work.
 
 db = harperdb.HarperDB(
-    url=secrets["URL"],
-    username=secrets["USERNAME"],
-    password=secrets["PASSWORD"]
+    url=st.secrets["URL"],
+    username=st.secrets["USERNAME"],
+    password=st.secrets["PASSWORD"]
 )
 
 SCHEMA = "fitness_app"
