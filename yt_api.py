@@ -14,7 +14,7 @@ def connect_yt(env_secrets):
 
 
 def get_video_id(url):
-    video_id = url.rsplit("/",1)
+    video_id = url.rsplit("/", 1)
     return video_id[1]
 
 

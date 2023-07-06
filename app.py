@@ -2,6 +2,7 @@ import random
 import streamlit as st
 from yt_api import get_video_info
 import database as dbs
+from datetime import date
 
 
 @st.cache_resource()
@@ -22,6 +23,12 @@ def get_workouts():
 
 
 st.title("Find your Fitness")
+
+email = st.text_input("To receive daily emails with the day's workout, enter your email address here: ")
+if email:
+    email_dict = {"email_id": email, "date_added": str(date.today())}
+    dbs.add_email(email_dict)
+    st.text("Email added to mailing list!")
 
 menu_options = ("Today's workout", "All workouts", "Add workout")
 selection = st.sidebar.selectbox("Menu", menu_options)
@@ -59,7 +66,7 @@ elif selection == "Add workout":
                 add = dbs.insert_workout(workout_data)
                 st.text("Added workout!")
                 st.cache_resource.clear()
-
+                st.experimental_rerun()
 
 else:
     st.markdown(f"## Today's workouts")
@@ -73,7 +80,7 @@ else:
         if not wo:
             workouts = get_workouts()
             n = len(workouts)
-            index = random.randint(0, n-1)
+            index = random.randint(0, n - 1)
             wo = workouts[index]
             dbs.update_workout_today(wo, insert=True)
         else:
@@ -83,7 +90,7 @@ else:
             workouts = get_workouts()
             n = len(workouts)
             if n > 1:
-                index = random.randint(0, n-1)
+                index = random.randint(0, n - 1)
                 wo_new = workouts[index]
                 while wo_new["video_id"] == wo["video_id"]:
                     index = random.randint(0, n - 1)
