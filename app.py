@@ -52,6 +52,8 @@ if selection == "All workouts":
 
 elif selection == "Add workout":
     st.markdown(f"## Add workouts")
+    st.write("Please note: the link follow the following format - https://youtu.be/video_id where"
+            " video id is a mix of letters and numbers.")
 
     url = st.text_input('Enter the video url')
     if url:
