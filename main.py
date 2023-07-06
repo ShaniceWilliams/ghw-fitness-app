@@ -1,13 +1,8 @@
-from datetime import date, time, timedelta
 from send_emails import send_email
 import database as dbs
 import random
-import time as tm
-import datetime as dt
-import schedule
-import logging
 import logging.handlers
-import os
+from dotenv import dotenv_values
 
 
 logger = logging.getLogger(__name__)
@@ -21,8 +16,6 @@ logger_file_handler = logging.handlers.RotatingFileHandler(
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger_file_handler.setFormatter(formatter)
 logger.addHandler(logger_file_handler)
-
-from dotenv import dotenv_values
 
 secrets = dotenv_values()
 
@@ -52,6 +45,7 @@ def send_email_to_db_emails():
         send_email(recipient, video_title, url)
         emails_sent += 1
     return emails_sent
+
 
 # Add the ability to send an email out everyday - This is being managed by Github actions
 

@@ -1,5 +1,4 @@
 google_api_python_client==2.92.0
 harperdb==0.4.2
 python-dotenv==1.0.0
-schedule==1.2.0
 streamlit==1.24.0
