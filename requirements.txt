@@ -1,4 +1,4 @@
 google_api_python_client==2.92.0
 harperdb==0.4.2
-python-dotenv==1.0.0
+python-dotenv @ https://files.pythonhosted.org/packages/44/2f/62ea1c8b593f4e093cc1a7768f0d46112107e790c3e478532329e434f00b/python_dotenv-1.0.0-py3-none-any.whl
 streamlit==1.24.0
