@@ -8,8 +8,8 @@ EMAIL_SERVER = "smtp.office365.com"
 
 secrets = dotenv_values(".env")
 
-sender_email = secrets['EMAIL']
-sender_pw = secrets['EMAIL_PASSWORD']
+sender_email = st.secrets['EMAIL']
+sender_pw = st.secrets['EMAIL_PASSWORD']
 
 
 def send_email(receiver_email, video_title, video_url):
