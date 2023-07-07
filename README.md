@@ -1,4 +1,4 @@
-# Find You Fitness
+# Find Your Fitness
 
 -------
 
@@ -29,6 +29,7 @@ the navigation made in the app lead to the appropriate changes in the backend.
 The final stage was to set up the ability to send out emails. Initially I had planned to continue following the tutorial,
 however having no javascript experience, I struggled with getting the local Harper DB instance working, so I pivoted to finding
 a python based solution, so with the help of [Coding is Fun's tutorial](https://youtu.be/OLrC4J2-pvk) on automating emails I figured that out too.
+Instead of using Deta as Coding is fun did, I scheduled the emails using cronjobs from my personal server. You can see the code for the emailing functionality [here](https://github.com/ShaniceWilliams/FYF-email-scheduling).
 
 ### Challenges I ran into
 
@@ -37,7 +38,7 @@ In the past I have only had experience with using loadenv from the python-dotenv
 not access the database instance I had created. After doing some research I found that the reason was related to a .env within
 the HarperDB package, and so I found the below solution.
 
-![Alt text](img/dotenv_values.png)
+![Dotenv_values](img/dotenv_values.png)
 
 
 ### What's next for Find Your Fitness
@@ -67,4 +68,3 @@ You can try it out for yourself here: https://ghw-fitness-app.streamlit.app/
 - Coding is fun's automation video: https://youtu.be/OLrC4J2-pvk
 - HarperDB Documentation: https://docs.harperdb.io/docs/
 - YouTube Data API Documentation: https://developers.google.com/youtube/v3/docs
-- Deta Documentation: https://deta.space/docs/en/
