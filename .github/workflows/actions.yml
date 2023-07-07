@@ -2,7 +2,7 @@ name: run main.py
 
 on:
   schedule:
-    - cron: '0 6 * * *' # At 06:00 daily
+    - cron: '30 9 * * *' # At 09:30 daily
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner
+        uses: actions/checkout@v2 # checkout the repository content to GitHub runner
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -24,12 +24,12 @@ jobs:
 
       - name: execute py script # run main.py
         env:
-          URL: ${{ secrets.URL }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          API_KEY: ${{ secrets.API_KEY }}
-          EMAIL: ${{ secrets.EMAIL }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          URL: ${{ st.secrets.URL }}
+          USERNAME: ${{ st.secrets.USERNAME }}
+          PASSWORD: ${{ st.secrets.PASSWORD }}
+          API_KEY: ${{ st.secrets.API_KEY }}
+          EMAIL: ${{ st.secrets.EMAIL }}
+          EMAIL_PASSWORD: ${{ st.secrets.EMAIL_PASSWORD }}
         run: python main.py
 
       - name: commit files
