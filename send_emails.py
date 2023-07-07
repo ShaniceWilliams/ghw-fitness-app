@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 from email.utils import formataddr
 from dotenv import dotenv_values
+import streamlit as st
 
 PORT = 587
 EMAIL_SERVER = "smtp.office365.com"
