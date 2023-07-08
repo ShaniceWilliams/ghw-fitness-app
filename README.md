@@ -51,7 +51,7 @@ I would also like to add more error handling and logging for troubleshooting pur
 
 ## Built with
 
-Python, Streamlit, HarperDB, Deta, and the YouTube Data API
+Python, Streamlit, HarperDB, and the YouTube Data API
 
 ----
 
